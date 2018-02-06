@@ -1,0 +1,72 @@
+<div class="row mb-3 text-center">
+	<div class="col">
+		<a class="btn btn-primary" href="#" role="button" routerLink="item"> Novo Item</a>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		<table class="table table-bordered">
+			<thead class="thead-light">
+				<tr>
+					<th>Descrição</th>
+					<th>Vencimento</th>
+					<th>Valor</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let item of items">
+					<td class>{{item.description}}</td>
+					<td>{{item.itemDate | date: 'dd/MM/yyyy'}}</td>
+					<td [ngClass]="{'1':'text-primary', '0':'text-danger'}[item.itemType]">
+						{{item.itemType == 1 ? 'R$' : '- R$'}} {{item.value | formatNumber }}
+					</td>
+					<td>
+						<a href="#" (click)="confirmation(item.id)" ><i class="material-icons" >delete</i></a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col">
+		<h1>
+		  {{title}}
+		</h1>
+		<fusioncharts
+		    [id]="id"
+		    [type]="type"
+		    [dataFormat]="dataFormat"
+		    [dataSource]="dataSource"
+		></fusioncharts>
+	</div>
+</div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="myDialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h2>Confirmação</h2>
+            </div>
+            <div class="modal-body">
+            		Tem certeza que deseja remover o item?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success pull-left" data-dismiss="modal" (click)="deleteItem()" >Sim</button>
+                <button type="button" class="btn btn-primary pull-left" data-dismiss="modal">Nao</button>
+            </div>
+        </div><!-- /.m
+      
+      <!--
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+  		-->
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<input type="hidden" #modalInput class="btn btn-info btn-lg" data-toggle="modal" data-target="#myDialog"/>

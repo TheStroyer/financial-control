@@ -1,0 +1,93 @@
+<form (ngSubmit)="onSubmit()" #itemForm="ngForm" class="form-check">
+
+	<div class="form-group row">
+		<label for="description" class="col-sm-2 col-form-label font-weight-bold">Descrição (*):</label>
+		<div class="col-sm-5">
+			<input id="description" name="description"
+				class="form-control" required [(ngModel)]="item.description"
+				#description="ngModel">
+
+			<div *ngIf="description.invalid && (description.dirty || description.touched)"
+				class="alert alert-danger">
+				<div *ngIf="description.errors.required">Descrição é obrigatório.</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="itemType" class="col-sm-2 col-form-label font-weight-bold">Tipo (*):</label>
+		<div class="col-sm-5">
+			<div class="custom-control custom-radio">
+			    <input type="radio" [(ngModel)]="item.itemType" required #itemType="ngModel" value="1" class="custom-control-input" id="itemTypeIncoming" name="itemType" checked="checked">
+			    <label class="custom-control-label active" for="itemTypeIncoming">Receita</label>
+		  	</div>
+			<div class="custom-control custom-radio">
+				  <input type="radio" [(ngModel)]="item.itemType" required value="0" class="custom-control-input" id="itemTypeExpenses" name="itemType">
+				  <label class="custom-control-label" for="itemTypeExpenses">Despesa</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="itemDate" class="col-sm-2 col-form-label font-weight-bold">Vencimento (*):</label>
+		<div class="col-sm-5">
+			<input class="form-control" type="date" [(ngModel)]="item.itemDate"
+				name="itemDate" id="itemDate" required #itemDate=ngModel>
+			<div *ngIf="itemDate.invalid && (itemDate.dirty || itemDate.touched)"
+				class="alert alert-danger">
+				<div *ngIf="itemDate.errors.required">Vencimento é obrigatório.</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group row">
+		<label for="itemValue" class="col-sm-2 col-form-label font-weight-bold">Valor (*):</label>
+		<div class="form-group col-sm-5">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">R$</span>
+				</div>
+				<input type="number" class="form-control" [(ngModel)]="item.value"
+					name="itemValue" id="itemValue" required #itemValue=ngModel>
+			</div>
+			<div *ngIf="itemValue.invalid && (itemValue.dirty || itemValue.touched)"
+				class="alert alert-danger">
+				<div *ngIf="itemValue.errors.required">Valor é obrigatório.</div>
+			</div>
+		</div>
+	</div>
+	<p>(*) Campos obrigatórios.</p>
+	<div class="row mb-3">
+		<div class="col">
+			<a class="btn btn-primary" href="#" role="button" routerLink="/">Voltar</a>
+			<button type="submit" [disabled]="itemForm.invalid || itemType.errors" class="btn btn-success">Cadastrar</button>
+		</div>
+	</div>
+
+	<img *ngIf="dataLoading"
+		src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+
+</form>
+
+<div class="modal" tabindex="-1" role="dialog" id="myDialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-content">
+				<div class="modal-header bg-success text-white">
+					<h2>Sucesso</h2>
+				</div>
+				<div class="modal-body">Item cadastrado com sucesso!</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary pull-left"
+						data-dismiss="modal"
+						onClick="document.location.href='/financial-control/'">Fechar
+						e sair</button>
+				</div>
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+<input type="hidden" #modalInput class="btn btn-info btn-lg" data-toggle="modal" data-target="#myDialog" />
