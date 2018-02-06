@@ -10,6 +10,9 @@ BACKEND
 
 	MySQL
 	5.5.44
+		Obs:
+			Deve ser criado um schema(banco) chamado financial_control. Usuario/senha: root/root
+			Ou trocar no arquivo application.properties a propriedade "database.url" conforme banco local
 
 	Server
 	Tomcat 8.0.48
