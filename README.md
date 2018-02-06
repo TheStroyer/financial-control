@@ -1,6 +1,7 @@
 # financial-control
 
 BACKEND
+
 	IDE
 	Eclipse Spring Tool Suite - 3.9.0-RELEASE
 
@@ -14,6 +15,7 @@ BACKEND
 	Tomcat 8.0.48
 
 FRONTEND
+
 	Angular CLI 
 	1.4.4
 
