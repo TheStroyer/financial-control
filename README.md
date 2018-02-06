@@ -19,7 +19,7 @@ FRONTEND
 	Angular CLI 
 	1.4.4
 
-	TypeScript: 
+	TypeScript
 	~2.3.3
 
 	Node 
@@ -35,11 +35,11 @@ Passos para rodar a aplicação:
 
 Configurar fontes na máquina:
 
-	JAVA:
+	JAVA
 		Configurar projeto no Eclipse
 			Importar como maven
 
-		Buildar
+		Build
 			Via linha de comando
 				cd [diretorio]/java
 				mvn clean compile install
@@ -47,13 +47,13 @@ Configurar fontes na máquina:
 			Via Eclipse:
 				Run as -> Maven Build
 
-	Angular
+	ANGULAR
 		Configurar projeto
 			cd [diretorio]/angular
 			npm install
 			ng serve --open
 
-		Build do projeto angular 
+		Build
 			cd [diretorio]
 			ng build --watch
 
@@ -61,4 +61,4 @@ Obs:
 	Após realizar alguma modificaçção no frontend(angular), deve ser gerado o build do projeto angular conforme acima.
 	Os fonts ficarão disponíveis na pasta /dist
 	Esses fonts devem ser copiados para a pasta WEB-INF\static do projeto Java, mas antes deve-se alterar o arquivo "index.html", trocando 
-	<base href="/"> por <base href="/financial-control/">
+	\<base href="/"\> por \<base href="/financial-control/"\>
